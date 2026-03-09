@@ -1,12 +1,12 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/huanfeng/ApkInfoTool/releases/download/v2.0.0/ApkInfoTool-Windows-x86_64-2.0.0.zip",
+      "url": "https://github.com/huanfeng/ApkInfoTool/releases/download/v2.1.0/ApkInfoTool-Windows-x86_64-2.1.0.zip",
       "bin": [
         "apk_info_tool.exe"
       ],
-      "hash": "342d271eb75a7facd8589e1881d5b58f9466d5ab9277e50b8af17d8d6f46435e"
+      "hash": "f0ac43c31848a88420a63777b5364074842f4f0f42faea51901939279334f887"
     }
   },
   "homepage": "https://github.com/huanfeng/ApkInfoTool",
