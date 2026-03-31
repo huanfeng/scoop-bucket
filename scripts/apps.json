@@ -1,0 +1,26 @@
+{
+  "apk_info_tool": {
+    "repo": "huanfeng/ApkInfoTool",
+    "asset_name": "ApkInfoTool-Windows-x86_64-{version}.zip",
+    "bin": "apk_info_tool.exe",
+    "description": "A simple tool for viewing APK/XAPK/APKM file information and installation.",
+    "homepage": "https://github.com/huanfeng/ApkInfoTool",
+    "license": "MIT"
+  },
+  "apkhub": {
+    "repo": "huanfeng/apkhub",
+    "asset_name": "apkhub-{version}-windows-x86_64.zip",
+    "bin": "apkhub.exe",
+    "description": "ApkHub CLI – manage distributed APK repositories",
+    "homepage": "https://github.com/huanfeng/apkhub",
+    "license": "MIT"
+  },
+  "hex": {
+    "repo": "huanfeng/hex",
+    "asset_name": "hex-{version}-windows-x86_64.zip",
+    "bin": "hex.exe",
+    "description": "Base converter and calculator",
+    "homepage": "https://github.com/huanfeng/hex",
+    "license": "MIT"
+  }
+}
