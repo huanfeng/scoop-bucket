@@ -1,0 +1,58 @@
+name: Update Scoop Manifest
+
+on:
+  repository_dispatch:
+    types: [update-scoop-manifest]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse payload
+        id: payload
+        run: |
+          echo "app=${{ github.event.client_payload.app }}" >> "$GITHUB_OUTPUT"
+          echo "repo=${{ github.event.client_payload.repo }}" >> "$GITHUB_OUTPUT"
+          echo "version=${{ github.event.client_payload.version }}" >> "$GITHUB_OUTPUT"
+          echo "asset_name=${{ github.event.client_payload.asset_name }}" >> "$GITHUB_OUTPUT"
+          echo "bin=${{ github.event.client_payload.bin }}" >> "$GITHUB_OUTPUT"
+          echo "description=${{ github.event.client_payload.description }}" >> "$GITHUB_OUTPUT"
+          echo "homepage=${{ github.event.client_payload.homepage }}" >> "$GITHUB_OUTPUT"
+          echo "license=${{ github.event.client_payload.license }}" >> "$GITHUB_OUTPUT"
+
+      - name: Download release asset and compute sha256
+        id: download
+        run: |
+          URL="https://github.com/${{ steps.payload.outputs.repo }}/releases/download/v${{ steps.payload.outputs.version }}/${{ steps.payload.outputs.asset_name }}"
+          echo "Downloading: $URL"
+          curl -fSL -o asset.zip "$URL"
+          HASH=$(sha256sum asset.zip | awk '{print $1}')
+          echo "hash=$HASH" >> "$GITHUB_OUTPUT"
+          echo "url=$URL" >> "$GITHUB_OUTPUT"
+          rm -f asset.zip
+
+      - name: Update manifest
+        run: |
+          python scripts/update_scoop_manifest.py \
+            --app "${{ steps.payload.outputs.app }}" \
+            --version "${{ steps.payload.outputs.version }}" \
+            --url "${{ steps.download.outputs.url }}" \
+            --hash "${{ steps.download.outputs.hash }}" \
+            --bin "${{ steps.payload.outputs.bin }}" \
+            --description "${{ steps.payload.outputs.description }}" \
+            --homepage "${{ steps.payload.outputs.homepage }}" \
+            --license "${{ steps.payload.outputs.license }}"
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add bucket/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update ${{ steps.payload.outputs.app }} to ${{ steps.payload.outputs.version }}"
+            git push
+          fi
