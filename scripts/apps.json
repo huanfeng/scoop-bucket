@@ -23,6 +23,14 @@
     "homepage": "https://github.com/huanfeng/hex",
     "license": "MIT"
   },
+  "lsuart": {
+    "repo": "huanfeng/lsuart",
+    "asset_name": "lsuart-{version}-windows-x86_64.zip",
+    "bin": "lsuart.exe",
+    "description": "Command-line serial port lister",
+    "homepage": "https://github.com/huanfeng/lsuart",
+    "license": "MIT"
+  },
   "setadb": {
     "repo": "huanfeng/setadb",
     "asset_name": "setadb-{version}.zip",
