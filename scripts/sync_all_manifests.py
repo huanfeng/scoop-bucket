@@ -1,6 +1,6 @@
 """Sync all app manifests to their latest GitHub release.
 
-Reads apps.json registry, queries GitHub API for the latest release of each app
+Reads the apps.jsonc registry, queries GitHub API for the latest release of each app
 (or a single app if --app is specified), downloads the asset, computes sha256,
 and updates the manifest via update_scoop_manifest.py.
 
@@ -21,7 +21,10 @@ import urllib.request
 from pathlib import Path
 
 SCRIPTS_DIR = Path(__file__).resolve().parent
-APPS_FILE = SCRIPTS_DIR / "apps.json"
+# Deliberately not named .json: Scoop's bucket CI validates every *.json file
+# touched by a commit against the manifest schema, and this registry is not a
+# manifest, so a .json name makes the Tests workflow fail on every edit.
+APPS_FILE = SCRIPTS_DIR / "apps.jsonc"
 
 
 def get_latest_release(repo: str, token: str | None) -> dict:
@@ -116,7 +119,7 @@ def main():
 
     if args.app:
         if args.app not in apps:
-            print(f"Error: app '{args.app}' not found in apps.json", file=sys.stderr)
+            print(f"Error: app '{args.app}' not found in apps.jsonc", file=sys.stderr)
             sys.exit(1)
         sync_app(args.app, apps[args.app], token)
     else:
