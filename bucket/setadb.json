@@ -1,12 +1,12 @@
 {
-  "version": "0.0.0",
+  "version": "1.1.0",
   "architecture": {
     "64bit": {
-      "url": "https://github.com/huanfeng/setadb/releases/download/v0.0.0/setadb-0.0.0.zip",
+      "url": "https://github.com/huanfeng/setadb/releases/download/v1.1.0/setadb-1.1.0.zip",
       "bin": [
         "setadb.bat"
       ],
-      "hash": "0000000000000000000000000000000000000000000000000000000000000000"
+      "hash": "5eba0776f54202292e41cb98fb922aea4950b0f2f66050a939d79923a70644b6"
     }
   },
   "description": "Switch the ADB target device by setting ANDROID_SERIAL",
