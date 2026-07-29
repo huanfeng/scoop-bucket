@@ -22,5 +22,13 @@
     "description": "Base converter and calculator",
     "homepage": "https://github.com/huanfeng/hex",
     "license": "MIT"
+  },
+  "setadb": {
+    "repo": "huanfeng/setadb",
+    "asset_name": "setadb-{version}.zip",
+    "bin": "setadb.bat",
+    "description": "Switch the ADB target device by setting ANDROID_SERIAL",
+    "homepage": "https://github.com/huanfeng/setadb",
+    "license": "MIT"
   }
 }
