@@ -30,6 +30,7 @@ scoop update apkhub
 - **hex** - Base converter and calculator
 - **lsuart** - Command-line serial port lister
 - **setadb** - Switch the ADB target device by setting `ANDROID_SERIAL`
+- **windinput-np** - [WindInput](https://windinput.com) (清风输入法), an open-source Chinese input method
 
 ### Note on setadb
 
@@ -44,6 +45,14 @@ run this once so that plain `setadb` resolves to the PowerShell version:
 Without it, `setadb` resolves to `setadb.bat` (PATHEXT ranks `.BAT` above
 `.PS1`), which runs in a throw-away `cmd.exe` and has no lasting effect. The
 script detects this and warns rather than failing silently.
+
+### Note on windinput-np
+
+An input method has to register with the system, so this is not a portable
+app: `scoop install huanfeng/windinput-np` runs the official installer
+silently (expect a UAC prompt) and installs WindInput system-wide.
+`scoop uninstall windinput-np` runs its uninstaller but keeps your user
+dictionaries and settings.
 
 ## How do I contribute new manifests?
 
