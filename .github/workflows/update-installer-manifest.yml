@@ -1,0 +1,42 @@
+name: Update Installer Manifest
+
+# Installer-based apps (e.g. windinput-np) keep a hand-written manifest; the
+# sender only says which version, and update_installer_manifest.py derives the
+# URL from the manifest's autoupdate template and hashes the download itself.
+# Portable zip apps go through update-manifest.yml instead.
+
+on:
+  repository_dispatch:
+    types: [update-installer-manifest]
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update manifest
+        env:
+          APP: ${{ github.event.client_payload.app }}
+          VERSION: ${{ github.event.client_payload.version }}
+        run: |
+          set -euo pipefail
+          # Both values end up in a file path and a URL: refuse anything odd.
+          [[ "$APP" =~ ^[A-Za-z0-9._-]+$ ]] || { echo "::error::bad app: $APP"; exit 1; }
+          [[ "$VERSION" =~ ^[0-9A-Za-z.+-]+$ ]] || { echo "::error::bad version: $VERSION"; exit 1; }
+          python scripts/update_installer_manifest.py --app "$APP" --version "$VERSION"
+
+      - name: Commit and push
+        env:
+          APP: ${{ github.event.client_payload.app }}
+          VERSION: ${{ github.event.client_payload.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add bucket/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update $APP to $VERSION"
+            git push
+          fi
