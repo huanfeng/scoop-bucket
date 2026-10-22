@@ -1,0 +1,15 @@
+{
+  "version": "0.1.0",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/huanfeng/ApkInfoPlus/releases/download/v0.1.0/ApkInfoPlus-0.1.0-windows-x86_64.zip",
+      "bin": [
+        "apkinfoplus.exe"
+      ],
+      "hash": "fe7de8c5ee7f0377965346429aec8e6d55230e8c513ff7674f555629314eca4a"
+    }
+  },
+  "description": "Lightweight cross-platform viewer and installer for APK/XAPK/APKM/APKS files.",
+  "homepage": "https://github.com/huanfeng/ApkInfoPlus",
+  "license": "MIT"
+}
