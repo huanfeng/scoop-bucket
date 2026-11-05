@@ -15,8 +15,8 @@
   "license": "MIT OR Apache-2.0",
   "shortcuts": [
     [
-      "PortTool",
-      "porttoolw.exe"
+      "porttoolw.exe",
+      "PortTool"
     ]
   ]
 }
