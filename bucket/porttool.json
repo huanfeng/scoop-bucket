@@ -12,5 +12,11 @@
   },
   "description": "Serial sharing plus SSH and TCP port forwarding in one tray app and CLI",
   "homepage": "https://github.com/huanfeng/porttool",
-  "license": "MIT OR Apache-2.0"
+  "license": "MIT OR Apache-2.0",
+  "shortcuts": [
+    [
+      "PortTool",
+      "porttoolw.exe"
+    ]
+  ]
 }
